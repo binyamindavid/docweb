@@ -1,3 +1,6 @@
 import 'package:flutter/material.dart';
 
-const Color shrinePink50 = Color(0xFFFEEAE6);
+class Styles {
+  static const Color shrinePink50 = Color(0xFFFEEAE6);
+  static const Color whiteBlack = Color(0xffff99);
+}

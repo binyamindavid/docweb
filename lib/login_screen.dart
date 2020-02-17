@@ -1,4 +1,6 @@
-import 'package:docweb/auth_service.dart';
+import 'package:docweb/actions/auth_service_actions.dart';
+import 'package:docweb/styles/colors.dart';
+import 'package:docweb/utils/validate.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -12,24 +14,6 @@ class _LoginScreenState extends State<LoginScreen> {
   String email, password;
 
   final formKey = new GlobalKey<FormState>();
-
-  checkFields() {
-    final form = formKey.currentState;
-    if (form.validate()) {
-      return true;
-    } else
-      return false;
-  }
-
-  String validateEmail(String value) {
-    Pattern pattern =
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regex = new RegExp(pattern);
-    if (!regex.hasMatch(value))
-      return 'Enter Valid Email';
-    else
-      return null;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             decoration: InputDecoration(hintText: 'Email'),
                             validator: (value) => value.isEmpty
                                 ? 'Email is required'
-                                : validateEmail(value.trim()),
+                                : Utils.validateEmail(value.trim()),
                             onChanged: (value) {
                               this.email = value;
                             },
@@ -80,9 +64,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: RaisedButton(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
-                        color: Colors.deepOrange,
+                        //color: Colors.deepOrange,
+                        color: Styles.whiteBlack,
                         onPressed: () {
-                          if (checkFields()) {
+                          if (Utils.checkFields(formKey)) {
                             AuthService().signIn(email, password);
                           }
                         },

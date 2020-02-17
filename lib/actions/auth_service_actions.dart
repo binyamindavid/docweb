@@ -1,3 +1,6 @@
+import 'package:docweb/models/profile_user.dart';
+import 'package:docweb/reducers/auth_reducer.dart';
+import 'package:docweb/store/data_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:docweb/home_screen.dart';
 import 'package:docweb/login_screen.dart';
@@ -27,7 +30,10 @@ class AuthService {
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
         .then((user) {
-      print('Signed in');
+      AuthReducers.authReducer(
+          AppDataStore(authProfile: AuthProfile(authResult: user)), signIn);
+
+      print('Signed in ${user.runtimeType}');
     }).catchError((e) {
       print(e);
     });

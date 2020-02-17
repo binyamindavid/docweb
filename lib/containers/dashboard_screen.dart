@@ -1,14 +1,14 @@
 import 'package:docweb/actions/auth_service_actions.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+class Dashboard extends StatefulWidget {
+  Dashboard({Key key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _DashboardState createState() => _DashboardState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
